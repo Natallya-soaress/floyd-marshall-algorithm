@@ -1,10 +1,9 @@
 import random
 import networkx as nx
 
-
-def barabasi_albert(n, p):
+def barabasi_albert(n, m):
     INF = float('inf')
-    G = nx.barabasi_albert_graph(n, p)
+    G = nx.barabasi_albert_graph(n, m)
     lista_adjacencia = nx.to_numpy_array(G)
 
     for i in range(n):

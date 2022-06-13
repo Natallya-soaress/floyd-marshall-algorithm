@@ -8,7 +8,6 @@ class Vertice:
 
 
 def erdosRenyi(n, p):
-    # limpar()
     vertice = [Vertice(i) for i in range(n)]
     aresta = [(i, j) for i in range(n)
               for j in range(i) if (random.random() < p)]
