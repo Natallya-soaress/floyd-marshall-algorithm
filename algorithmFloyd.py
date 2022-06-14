@@ -1,9 +1,11 @@
-def floyd_warshall(G):
-    distance = G
+import numpy as np
 
-    for k in range(len(distance)):
-        for i in range(len(distance)):
-            for j in range(len(distance)):
-                distance[i][j] = min(
-                    distance[i][j], distance[i][k] + distance[k][j])
-    return distance
+def floyd_warshall(G):
+    for k in range(len(G)):
+        for i in range(len(G)):
+            for j in range(len(G)):
+                G[i][j] = min(
+                    G[i][j], G[i][k] + G[k][j])
+    print("\nMatriz Custo Mínimo")
+    print(np.array(G))
+    return G

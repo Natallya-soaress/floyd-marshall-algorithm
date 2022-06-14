@@ -1,31 +1,30 @@
 import random
 import numpy as np
 
-class Vertice:
-    def __init__(self, index):
-        self.index = index
-        self.vizinhos = []
-
 
 def erdosRenyi(n, p):
-    vertice = [Vertice(i) for i in range(n)]
-    aresta = [(i, j) for i in range(n)
-              for j in range(i) if (random.random() < p)]
-    values = [random.randint(0, 9) for i in aresta]
+    nodes = [i for i in range(n)]
+    edges = [(i, j) for i in range(n) for j in range(i) if (random.random() < p)]
 
-    def valueAresta(i: Vertice, j: Vertice):
-        value = float("inf")
-        for it in aresta:
-            if(it == (i.index, j.index)):
-                value = values[aresta.index((i.index, j.index))]
-            if(it == (j.index, i.index)):
-                value = values[aresta.index((j.index, i.index))]
-            if(i.index == j.index):
-                value = 0
-        return value
+    # Matriz Adjacência
+    G = [[0 for i in nodes] for j in nodes]
+    for edge in edges:
+        G[edge[0]-1][edge[1]-1] = G[edge[1]-1][edge[0]-1] = 1
+    print("Matriz de adjacência")
+    print(np.array(G))
 
-    G = [[valueAresta(i, j) for j in vertice] for i in vertice]
+    # Matriz de Custo 
+    for i in range(n):
+        for j in range(n):
+            if G[i][j] != 0:
+                G[i][j] = G[j][i] = random.randint(1, 10)
+            else:
+                if i != j:
+                    G[i][j] = float('inf')
+    print("\nMatriz Custo")
+    print(np.array(G))
 
     return np.array(G)
 
 
+erdosRenyi(5, 0.5)
