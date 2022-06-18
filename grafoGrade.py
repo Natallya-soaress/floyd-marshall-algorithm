@@ -1,5 +1,7 @@
 import random
 import numpy as np
+import matplotlib.pyplot as plt
+from plotGraph import plotGraph, plotMatrix
 
 
 class NodeGrid:
@@ -35,8 +37,7 @@ def grafoGrade(n):
     G = [[0 for i in nodes] for j in nodes]
     for edge in edges:
         G[edge[0]-1][edge[1]-1] = G[edge[1]-1][edge[0]-1] = 1
-    print("Matriz de adjacência")
-    print(np.array(G))
+    plotMatrix("Matriz Adjacência",G)
 
     # Matriz de Custo 
     for i in range(len(G)):
@@ -46,8 +47,8 @@ def grafoGrade(n):
             else:
                 if i != j:
                     G[i][j] = float('inf')
-    print("\nMatriz Custo")
-    print(np.array(G))
+    plotMatrix("Matriz Custo",G)
+    plotGraph(G)
     return np.array(G)
 
 # print(NodeGrid)
