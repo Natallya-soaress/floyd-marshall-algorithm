@@ -1,13 +1,9 @@
-import numpy as np
-
-from plotGraph import plotMatrix
-
+from plotService import plot_matrix
 
 def floyd_warshall(M):
-    g = M
-    for k in range(len(g)):
-        for i in range(len(g)):
-            for j in range(len(g)):
-                g[i][j] = min(
-                    g[i][j], g[i][k] + g[k][j])
-    plotMatrix("Matriz Custo Mínimo",M)
+    for k in range(len(M)):
+        for i in range(len(M)):
+            for j in range(len(M)):
+                M[i][j] = min(
+                   M[i][j],M[i][k] + M[k][j])
+    plot_matrix("Matriz Custo Mínimo",M)

@@ -1,14 +1,13 @@
 import random
 import networkx as nx
+from plotService import plot_graph, plot_matrix
 
-from plotGraph import plotGraph, plotMatrix
-
-def barabasi_albert(n, m):
+def get_barabasi_albert(n, m):
     G = nx.barabasi_albert_graph(n, m)
 
     # Matriz Adjacência
     G = nx.to_numpy_array(G)
-    plotMatrix("Matriz Adjacência",G)
+    plot_matrix("Matriz Adjacência",G)
 
     # Matriz de Custo 
     for i in range(n):
@@ -18,6 +17,6 @@ def barabasi_albert(n, m):
             else:
                 if i != j:
                     G[i][j] = float('inf')
-    plotMatrix("Matriz Custo",G)
-    plotGraph(G)
+    plot_matrix("Matriz Custo",G)
+    plot_graph(G)
     return G
